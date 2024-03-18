@@ -2,7 +2,7 @@ package telran.strings;
 
 public class RegularExpresions {
 	public static String javaVariable() {
-		String regex = "[A-Za-z$][\\w$]*|_[\\\\w$]+";
+		String regex = "[A-Za-z$][\\w$]*|__|[\\\\w$]+";
 		return regex;
 }
 public static String zero_300() {
@@ -14,10 +14,7 @@ public static String ipOctet() {
 	return regex;
 }
 public static String mobileIsraelPhone() {
-	//TODO
-	//string contains possible Israel mobile phone number
-	//+972-<prefix two digits begining from 5>-<7 digits of number>
-	//<prefix three digits: first - 0, second 5, third - any>-<7 digits>
-	return null;
+	String regex = "\\+972-5[0-9]\\d{7}|05[0-9]\\d{7}";
+	return regex;
 }
 }

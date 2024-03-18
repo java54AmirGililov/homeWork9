@@ -83,4 +83,17 @@ class RegularExpressionsTest {
 		assertFalse("260".matches(regex));
 		assertFalse("300".matches(regex));	
 	}
+	@Test
+	@DisplayName ("Test of method mobileIsraelPhoneTest")
+	void mobileIsraelPhoneTest() {
+		String regex = RegularExpresions.mobileIsraelPhone();
+		assertTrue ("+972-598765432".matches(regex));
+		assertTrue ("0598765432".matches(regex));
+		assertTrue ("+972-508267911".matches(regex));
+		assertTrue ("0556728932".matches(regex));
+		assertFalse ("+972-59875432".matches(regex));
+		assertFalse ("05987654132".matches(regex));
+		assertFalse ("+973-508267911".matches(regex));
+		assertFalse ("0651234456".matches(regex));
+	}
 }
