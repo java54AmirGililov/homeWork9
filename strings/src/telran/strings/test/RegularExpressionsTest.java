@@ -8,7 +8,7 @@ import telran.strings.RegularExpresions;
 class RegularExpressionsTest {
 
 	@Test
-	@DisplayName("Test of method javaVariableTrue")
+	@DisplayName("Test of the method javaVariableTrue")
 	void javaVariableTrueTest() {
 		
 		String regex = RegularExpresions.javaVariable();
@@ -22,7 +22,7 @@ class RegularExpressionsTest {
 		assertTrue("Abs_".matches(regex));
 	}
 	@Test
-	@DisplayName ("Test of method javaVariableFalse")
+	@DisplayName ("Test of the method javaVariableFalse")
 	void javaVariableFalseTest() {
 		String regex = RegularExpresions.javaVariable();
 		assertFalse("1abc".matches(regex));
@@ -33,7 +33,7 @@ class RegularExpressionsTest {
 		assertFalse("i*nt".matches(regex));
 	}
 	@Test
-	@DisplayName ("Test of method zero300TrueTest")
+	@DisplayName ("Test of the method zero300True")
 	void zero_300TrueTest() {
 		String regex = RegularExpresions.zero_300();
 		assertTrue("0".matches(regex));
@@ -46,7 +46,7 @@ class RegularExpressionsTest {
 		assertTrue("300".matches(regex));
 	}
 	@Test
-	@DisplayName ("Test of method zero300FalseTest")
+	@DisplayName ("Test of the method zero300False")
 	void zero_300TFalseTest() {
 		String regex = RegularExpresions.zero_300();
 		assertFalse("00".matches(regex));
@@ -59,7 +59,7 @@ class RegularExpressionsTest {
 		assertFalse("301".matches(regex));
 	}
 	@Test
-	@DisplayName ("Test of method ipOctetTest")
+	@DisplayName ("Test of the method ipOctet")
 	void ipOctetTest() {
 		String regex = RegularExpresions.ipOctet();
 		assertTrue("0".matches(regex));
@@ -84,7 +84,7 @@ class RegularExpressionsTest {
 		assertFalse("300".matches(regex));	
 	}
 	@Test
-	@DisplayName ("Test of method mobileIsraelPhoneTest")
+	@DisplayName ("Test of the method mobileIsraelPhone")
 	void mobileIsraelPhoneTest() {
 		String regex = RegularExpresions.mobileIsraelPhone();
 		assertTrue ("+972-598765432".matches(regex));
@@ -95,5 +95,41 @@ class RegularExpressionsTest {
 		assertFalse ("05987654132".matches(regex));
 		assertFalse ("+973-508267911".matches(regex));
 		assertFalse ("0651234456".matches(regex));
+	}
+	@Test
+	@DisplayName ("Test of the method ipV4Address")
+	void ipV4AddressTest() {
+		String ipV4Regex = RegularExpresions.ipV4Address();
+		assertTrue("1.2.3.4".matches(ipV4Regex));
+		assertFalse("1.2.3".matches(ipV4Regex));
+		assertFalse("1 2.3.4".matches(ipV4Regex));
+		assertFalse("1.2.3.4.5".matches(ipV4Regex));
+		assertFalse("1.2.3&4".matches(ipV4Regex));
+	}
+	@Test
+	@DisplayName ("Test of the method simpeArithmeticExpressions")
+	void simpeArithmeticExpressionsTest() {
+		String regex =RegularExpresions.simpleArithmeticExpression();
+		assertTrue("20".matches(regex));
+		assertTrue("20+3 /2 *100".matches(regex));
+		assertTrue("10000 - 1".matches(regex));
+		assertTrue("10000 -1 ".matches(regex));	
+		assertFalse("-20".matches(regex));
+		assertFalse("20 **".matches(regex));
+		assertFalse(" 20 +3 /2 *100 +".matches(regex));
+		assertFalse(" 20 +3 //2 *100".matches(regex));
+	}
+	@Test
+	@DisplayName ("Test of the method arithmeticExpressions")
+	void arithmeticExpressionTest() {
+		String regex = RegularExpresions.arithmeticExpression();
+		assertTrue("(20.5 + abc)*2".matches(regex));
+		assertTrue("(20.5 + abc))*2".matches(regex));
+		assertTrue("(20.5 + abc / 3))*(2".matches(regex));
+		assertTrue("(abc)".matches(regex));
+		assertTrue("(__)".matches(regex));
+		assertFalse("2 + _".matches(regex));
+		assertFalse("2 + a12 * ".matches(regex));
+		assertFalse("2 + )a12 * ".matches(regex));
 	}
 }
